@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Metrics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        .metric-card {
+            background-color: #e9ecef;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #4e54c8;
+        }
+
+        .metric-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .confusion-matrix {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .confusion-matrix img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1em;
+            color: #6c757d;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4e54c8;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #007bff;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .metric-value {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Model Performance Metrics</h1>
+    </header>
+    <div class="container">
+        <div class="metric-card">
+            <span class="metric-title">Accuracy:</span>
+            <span class="metric-value">{{ metrics.accuracy | round(2) }}</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-title">Precision:</span>
+            <span class="metric-value">{{ metrics.precision | round(2) }}</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-title">Recall:</span>
+            <span class="metric-value">{{ metrics.recall | round(2) }}</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-title">F1 Score:</span>
+            <span class="metric-value">{{ metrics.f1_score | round(2) }}</span>
+        </div>
+        <div class="confusion-matrix">
+            <h2>Confusion Matrix</h2>
+            <img src="{{ metrics.confusion_matrix_image }}" alt="Confusion Matrix">
+        </div>
+    </div>
+    <footer>
+        <a href="/">Back to Home</a>
+    </footer>
+</body>
+</html>
